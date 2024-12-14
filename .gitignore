@@ -4,3 +4,5 @@ __pycache__/
 
 # Archives
 .env
+database/*.txt
+logs.txt
