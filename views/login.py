@@ -3,32 +3,47 @@ LogIn View
 """
 # Modules
 from func import security
-from func import crud
+from database import crud
 from func import logger
 
 # Data
 data = crud.read('cashier')
+
+# [id, user, password]
+
+def check_user(user: str) -> bool:
+    "Check if user exists"
+    for i in data:
+        if i[1] == user:
+            return True
+    return False
 
 def login(user: str, password: str) -> bool:
     "Enter session"
 
     for i in data:
         if i[1] == user and security.check_password(password, i[2]):
-            logger.log_access(f'{user} Access')
+            response = logger.log_access(f'{user} Access')
+            print(response)
             return True
+
     logger.log_forbidden(f'{user} try access...')
     return False
 
-# [id, user, password]
-def register(user: str, password: str) -> bool:
+def register(user: str, password: str, data: list=data) -> bool:
     "Register a new cashier"
 
     try:
+        if check_user(user): 
+            data = logger.log_error(f'{user} already exists')
+            print(data)
+            return False
+
         hashed_password = security.hash_password(password)
         user_id = security.get_uuid()
         crud.add('cashier', [user_id, user, hashed_password])
-        logger.log_info(f'User: {user}... Added')
-
+        data = logger.log_info(f'User: {user}... Added')
+        print(data)
         return True
 
     except Exception as e:
