@@ -39,3 +39,7 @@ def log_error(message: str) -> str:
 # Forbidden
 def log_forbidden(message: str) -> str:
     return log_forbidden("FORBIDDEN", message)
+
+# Access
+def log_access(message: str) -> str:
+    return log_message("ACCESS", message)
