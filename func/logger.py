@@ -35,3 +35,7 @@ def log_warning(message: str) -> str:
 # Error
 def log_error(message: str) -> str:
     return log_message("ERROR", message)
+
+# Forbidden
+def log_forbidden(message: str) -> str:
+    return log_forbidden("FORBIDDEN", message)
