@@ -28,7 +28,8 @@ def create_files(file_name:str) -> bool:
         return True 
 
     except Exception as e:
-        print(f"Error: {e}")
+        data = logger.log_error(e)
+        print(data)
         return False
 
 # Start Files 
