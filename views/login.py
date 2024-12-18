@@ -27,7 +27,8 @@ def login(user: str, password: str) -> bool:
             print(response)
             return True
 
-    logger.log_forbidden(f'{user} try access...')
+    data = logger.log_forbidden(f'{user} try access...')
+    print(data)
     return False
 
 def register(user: str, password: str, data: list=data) -> bool:
@@ -50,3 +51,7 @@ def register(user: str, password: str, data: list=data) -> bool:
         data = logger.log_error(e)
         print(data)
         return False 
+
+def delete(user: str, password: str, data:list=data) -> bool:
+    "Delete a user with user and password"
+    pass
