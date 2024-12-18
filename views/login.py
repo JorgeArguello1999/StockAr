@@ -11,14 +11,14 @@ data = crud.read('cashier')
 
 # [id, user, password]
 
-def check_user(user: str) -> bool:
+def check_user(user: str, data:list=data) -> bool:
     "Check if user exists"
     for i in data:
         if i[1] == user:
             return True
     return False
 
-def login(user: str, password: str) -> bool:
+def login(user: str, password: str, data:list=data) -> bool:
     "Enter session"
 
     for i in data:
@@ -54,4 +54,5 @@ def register(user: str, password: str, data: list=data) -> bool:
 
 def delete(user: str, password: str, data:list=data) -> bool:
     "Delete a user with user and password"
+    crud.delete('cashier', user, 1)
     pass

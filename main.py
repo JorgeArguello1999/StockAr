@@ -14,4 +14,6 @@ core.start_files()
 
 # Main thread
 login.login('Jorge', 'Jorge')
-login.register('Jorges', 'Jorge')
+login.register('Jorge', 'Jorge')
+
+login.delete("Jorge", "jorge")
