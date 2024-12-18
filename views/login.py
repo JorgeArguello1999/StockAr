@@ -54,5 +54,10 @@ def register(user: str, password: str, data: list=data) -> bool:
 
 def delete(user: str, password: str, data:list=data) -> bool:
     "Delete a user with user and password"
-    crud.delete('cashier', user, 1)
-    pass
+    if login(user, password):
+        crud.delete('cashier', user, 1)
+        return True 
+    
+    data = logger.log_forbidden(f"Your password isn't correct, You can't delete {user}")
+    print(data)
+    return False
